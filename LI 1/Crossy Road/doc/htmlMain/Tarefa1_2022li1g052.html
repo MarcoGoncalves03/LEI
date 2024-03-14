@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Tarefa1_2022li1g052</title><link href="linuwial.css" rel="stylesheet" type="text/css" title="Linuwial" /><link rel="stylesheet" type="text/css" href="quick-jump.css" /><script src="haddock-bundle.min.js" async="async" type="text/javascript"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { processClass: "mathjax", ignoreClass: ".*" } });</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script></head><body><div id="package-header"><span class="caption empty">&nbsp;</span><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul></div><div id="content"><div id="module-header"><table class="info"><tr><th valign="top">Copyright</th><td>Marco Soares Gon&#231;alves &lt;a104614@alunos.uminho.pt&gt;<br />Salvador Duarte Magalh&#227;es Barreto &lt;a104520@alunos.uminho.pt&gt;</td></tr><tr><th>Safe Haskell</th><td>Safe</td></tr></table><p class="caption">Tarefa1_2022li1g052</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>M&#243;dulo para a realiza&#231;&#227;o da Tarefa 1 do projeto de LI1 em 2022/23.</p></div></div><div id="synopsis"><details id="syn"><summary>Synopsis</summary><ul class="details-toggle" data-details-id="syn"><li class="src short"><a href="#v:mapaValido">mapaValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:terrenoValido">terrenoValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:rioValido">rioValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:troncosValidos">troncosValidos</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:carrosValidos">carrosValidos</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:linhaNaoCheia">linhaNaoCheia</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:comprimentoValido">comprimentoValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li><li class="src short"><a href="#v:terrenosContiguos">terrenosContiguos</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool</li></ul></details></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a id="v:mapaValido" class="def">mapaValido</a> <a href="#v:mapaValido" class="selflink">#</a></p><div class="subs arguments"><p class="caption">Arguments</p><table><tr><td class="src">:: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a></td><td class="doc"><p>recebe um mapa</p></td></tr><tr><td class="src">-&gt; Bool</td><td class="doc"><p>apresenta se este &#233; v&#225;lido ou n&#227;o</p></td></tr></table></div><div class="doc"><p>O objectivo desta tarefa &#233; implementar a fun&#231;&#227;o <code><a href="Tarefa1_2022li1g052.html#v:mapaValido" title="Tarefa1_2022li1g052">mapaValido</a></code>.</p><pre>mapaValido m = terrenoValido m &amp;&amp; rioValido m &amp;&amp; obstaculosValidos m &amp;&amp; linhaNaoCheia m &amp;&amp; comprimentoValido m &amp;&amp; terrenosContiguos m
+</pre><h2>Propriedades:</h2><pre>mapaValido (Mapa l []) = False</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mapaValido (Mapa 6 [(Relva,[Arvore,Nenhum,Arvore,Arvore,Arvore,Nenhum]),(Rio 3,[Nenhum,Tronco,Tronco,Tronco,Tronco,Tronco]),(Rio (-2),[Tronco,Nenhum,Tronco,Nenhum,Nenhum,Tronco])])
+</code></strong>True
+<code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>mapaValido (Mapa 4 [(Rio 3,[Tronco,Tronco,Arvore]),(Relva,[Carro,Nenhum])])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a id="v:terrenoValido" class="def">terrenoValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:terrenoValido" class="selflink">#</a></p><div class="doc"><ol><li>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g052.html#v:terrenoValido" title="Tarefa1_2022li1g052">terrenoValido</a></code> est&#225; encarregue de verificar que n&#227;o existem obst&#225;culos em terrenos impr&#243;prios, isto &#233;, troncos em estradas ou relvas, &#225;rvores em rios ou estradas, ou carros em rios ou relvas:</li></ol><pre>terrenoValido (Mapa l ((Relva,(ob:obs)):t)) = (ob == Arvore || ob == Nenhum ) &amp;&amp; terrenoValido (Mapa l ((Relva,obs):t)) &amp;&amp; terrenoValido (Mapa l t)
+terrenoValido (Mapa l ((Estrada v,(ob:obs)):t)) = (ob == Carro || ob == Nenhum) &amp;&amp; terrenoValido (Mapa l ((Estrada v ,obs):t)) &amp;&amp; terrenoValido (Mapa l t)
+terrenoValido (Mapa l ((Rio v,(ob:obs)):t)) = (ob == Tronco || ob == Nenhum) &amp;&amp; terrenoValido (Mapa l ((Rio v ,obs):t)) &amp;&amp; terrenoValido (Mapa l t)
+</pre><h2>Propriedades:</h2><pre>terrenoValido (Mapa l []) = True</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>terrenoValido (Mapa 2 [(Relva,[Arvore,Nenhum]),(Rio 2,[Tronco,Nenhum]),(Estrada (-2),[Carro,Nenhum])])
+</code></strong>True
+<code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>terrenoValido (Mapa 3 [(Relva,[Arvore,Nenhum,Nenhum]),(Estrada (-2),[Tronco,Nenhum,Carro])])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a id="v:rioValido" class="def">rioValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:rioValido" class="selflink">#</a></p><div class="doc"><ol><li>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g052.html#v:rioValido" title="Tarefa1_2022li1g052">rioValido</a></code> &#233; respons&#225;vel por verificar se rios cont&#237;guos t&#234;m dire&#231;&#245;es opostas:</li></ol><pre>rioValido (Mapa l [ts]) = True
+rioValido (Mapa l ((Estrada v,ob):t)) = rioValido (Mapa l t)
+rioValido (Mapa l ((Relva,ob):t)) = rioValido (Mapa l t)
+rioValido (Mapa l ((Rio v,ob):(Rio v1,ob1):t)) = (v * v1 &lt; 0) &amp;&amp; rioValido (Mapa l ((Rio v1,ob1):t))
+rioValido (Mapa l ((Rio v,ob):(terreno,ob2):t))
+    | elem Arvore ob2 || elem Carro ob2 = rioValido (Mapa l ((terreno,ob2):t))
+    | otherwise = rioValido (Mapa l t)
+</pre><h2>Propriedades:</h2><pre>rioValido (Mapa l []) = True</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>rioValido (Mapa 3 [(Relva,[Arvore,Nenhum,Arvore]),(Rio 2,[Nenhum,Tronco,Nenhum]),(Rio (-3),[Tronco,Tronco,Nenhum])])
+</code></strong>True
+<code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>(Mapa 3 [(Rio 2,[Nenhum,Tronco,Tronco]),(Rio 1,[Tronco,Nenhum,Nenhum])])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a id="v:troncosValidos" class="def">troncosValidos</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:troncosValidos" class="selflink">#</a></p><div class="doc"><ol><li>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g052.html#v:troncosValidos" title="Tarefa1_2022li1g052">troncosValidos</a></code> encarrega-se de verificar que, na mesma linha, troncos n&#227;o tem mais de 5 unidades de comprimento:</li></ol><pre>troncosValidos (Mapa l ((terreno,[]):t)) = troncosValidos (Mapa l t)
+troncosValidos (Mapa l ((Relva,_):t)) = troncosValidos (Mapa l t)
+troncosValidos (Mapa l ((Estrada _,_):t)) = troncosValidos (Mapa l t)
+troncosValidos (Mapa l ((Rio _,obs):t)) = if troncos (length obs) obs 
+                                          then troncosValidos (Mapa l (t))
+                                          else False 
+</pre><p>Foi utilizada a fun&#231;&#227;o auxiliar <code>troncos</code>:</p><pre>troncos :: Int -&gt; [Obstaculo] -&gt; Bool
+troncos 0 (ob:obs) = True 
+troncos a (ob:obs) | take 6 (ob:obs) == (replicate 6 Tronco) = False
+                   | otherwise = troncos (a-1) (obs ++ [ob])
+</pre><h2>Propriedades:</h2><pre>troncosValidos (Mapa l []) = True</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>troncosValidos (Mapa 6 [(Relva,[Nenhum,Nenhum,Arvore,Nenhum,Arvore,Arvore]),(Rio 3,[Tronco,Tronco,Nenhum,Tronco,Nenhum,Tronco])])
+</code></strong>True
+<code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>troncosValidos (Mapa 7 [(Relva,[Nenhum,Nenhum,Arvore,Nenhum,Arvore,Arvore,Nenhum]),(Rio 1,[Tronco,Tronco,Tronco,Tronco,Tronco,Tronco,Tronco])])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a id="v:carrosValidos" class="def">carrosValidos</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:carrosValidos" class="selflink">#</a></p><div class="doc"><ol><li>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g052.html#v:carrosValidos" title="Tarefa1_2022li1g052">carrosValidos</a></code> &#233; respons&#225;vel por verificar que, na mesma linha, Carros n&#227;o t&#234;m mais do que 3 unidades de comprimento:</li></ol><pre>carrosValidos (Mapa l ((terreno,[]):t)) = carrosValidos (Mapa l t)
+carrosValidos (Mapa l ((Relva,_):t)) = carrosValidos (Mapa l t)
+carrosValidos (Mapa l ((Rio _,_):t)) = carrosValidos (Mapa l t)
+carrosValidos (Mapa l ((terrreno,obs):t)) = if carros (length obs) obs 
+                                            then carrosValidos (Mapa l (t))
+                                            else False 
+</pre><p>Foi utilizada a fun&#231;&#227;o aulixiar <code>carros</code>:</p><pre>carros :: Int -&gt; [Obstaculo] -&gt; Bool
+carros 0 (ob:obs) = True 
+carros a (ob:obs) | take 4 (ob:obs) == (replicate 4 Tronco) = False
+                  | otherwise = carros (a-1) (obs ++ [ob])
+</pre><h2>Propriedades:</h2><pre>carrosValidos (Mapa l []) = True</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>carrosValidos (Mapa 4 [(Rio 2,[Tronco,Nenhum,Nenhum,Tronco]),(Estrada 2,[Carro,Carro,Nenhum,Nenhum])])
+</code></strong>True
+<code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>carrosValidos (Mapa 4 [(Estrada 1,[Carro,Carro,Carro,Carro]),(Relva,[Arvore,Nenhum,Nenhum,Arvore])])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a id="v:linhaNaoCheia" class="def">linhaNaoCheia</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:linhaNaoCheia" class="selflink">#</a></p><div class="doc"><ol><li>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g052.html#v:linhaNaoCheia" title="Tarefa1_2022li1g052">linhaNaoCheia</a></code> ocupa-se de verificar que uma linha n&#227;o pode ser composta exclusivamente por obst&#225;culos, ou seja, tem de haver pelo menos um Nennhum em cada linha:</li></ol><pre>linhaNaoCheia (Mapa l ((terreno,ob):t)) 
+    | elem Nenhum ob = linhaNaoCheia (Mapa l t)
+    | otherwise = False
+</pre><h2>Propriedades:</h2><pre>linhaNaoCheia (Mapa l []) = True</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>linhaNaoCheia (Mapa 3 [(Estrada 3,[Nenhum,Carro,Carro]),(Relva,[Arvore,Nenhum,Nenhum]),(Rio 2,[Tronco,Nenhum,Tronco])])
+</code></strong>True
+<code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>linhaNaoCheia (Mapa 3 [(Relva,[Arvore,Arvore,Arvore])])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a id="v:comprimentoValido" class="def">comprimentoValido</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:comprimentoValido" class="selflink">#</a></p><div class="doc"><ol><li>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g052.html#v:comprimentoValido" title="Tarefa1_2022li1g052">comprimentoValido</a></code> &#233; respons&#225;vel por verificar que o comprimento da lista de obst&#225;culos de cada linha &#233; igual a largura do mapa:</li></ol><pre>comprimentoValido (Mapa largura ((terreno,obs):t)) = if largura == length obs
+                                                     then comprimentoValido (Mapa largura t)
+                                                     else False
+</pre><h2>Propriedades:</h2><pre>comprimentoValido (Mapa _ []) = True</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>comprimentoValido (Mapa 2 [(Rio 1,[Tronco,Nenhum]),(Relva,[Arvore,Nenhum]),(Estrada 1,[Carro,Nenhum])])
+</code></strong>True
+<code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>comprimentoValido (Mapa 3 [(Estrada 2,[Carro,Carro,Nenhum,Carro]),(Relva,[Nenhum,Arvore,Arvore])])
+</code></strong>False
+</pre></div></div><div class="top"><p class="src"><a id="v:terrenosContiguos" class="def">terrenosContiguos</a> :: <a href="LI12223.html#t:Mapa" title="LI12223">Mapa</a> -&gt; Bool <a href="#v:terrenosContiguos" class="selflink">#</a></p><div class="doc"><ol><li>A fun&#231;&#227;o <code><a href="Tarefa1_2022li1g052.html#v:terrenosContiguos" title="Tarefa1_2022li1g052">terrenosContiguos</a></code> encarrega-se de verificar que, contiguamente, n&#227;o existem mais do que 4 rios, 5 estradas ou relvas:</li></ol><pre>terrenosContiguos (Mapa l tr@(t:ts)) 
+    | (replicate 5 2) == terrenosToInt (take 5 tr) = False
+    | (replicate 6 1) == terrenosToInt (take 6 tr) = False
+    | (replicate 6 3) == terrenosToInt (take 6 tr) = False
+    | otherwise = terrenosContiguos (Mapa l ts)
+</pre><p>Foi utilizada a fun&#231;&#227;o auxiliar <code>terrenosToInt</code>:</p><pre>terrenosToInt :: [(Terreno,[Obstaculo])] -&gt; [Int] 
+terrenosToInt [] = []
+terrenosToInt ((Relva,_):t) = 1 : terrenosToInt t
+terrenosToInt ((Rio _,_):t) = 2 : terrenosToInt t
+terrenosToInt ((Estrada _,_):t) = 3 : terrenosToInt t
+</pre><h2>Propriedades:</h2><pre>terrenosContiguos (Mapa l []) = True</pre><h2>Exemplos de utiliza&#231;&#227;o:</h2><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>terrenosContiguos (Mapa 4 [(Relva,[Arvore,Nenhum,Nenhum,Arvore]),(Relva,[Nenhum,Arvore,Arvore,Arvore]),(Rio 5,[Tronco,Tronco,Nenhum,Nenhum]),(Estrada 2,[Nenhum,Carro,Nenhum,Nenhum])])
+</code></strong>True
+<code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>terrenosContiguos (Mapa 2 [(Relva,[Arvore,Nenhum]),(Relva,[Arvore,Nenhum]),(Relva,[Nenhum,Nenhum]),(Relva,[Nenhum,Arvore]),(Relva,[Nenhum,Arvore]),(Relva,[Arvore,Nenhum])])
+</code></strong>False
+</pre></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.23.0</p></div></body></html>
